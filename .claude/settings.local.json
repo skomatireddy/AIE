@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat \"C:\\\\Users\\\\srika\\\\Documents\\\\Claude Projects\\\\ai-vision-explorer\\\\node_modules\\\\@huggingface\\\\transformers\\\\package.json\" | python -c \"import sys,json; p=json.load\\(sys.stdin\\); print\\(json.dumps\\(p.get\\('exports',{}\\), indent=2\\)\\)\" 2>/dev/null | head -60)",
+      "Bash(node -e \"const p = require\\('./node_modules/@huggingface/transformers/package.json'\\); console.log\\(JSON.stringify\\(p.exports, null, 2\\)\\)\" 2>/dev/null | head -60)",
+      "Bash(node -e \"const p = require\\('./node_modules/onnxruntime-web/package.json'\\); console.log\\(JSON.stringify\\({main: p.main, browser: p.browser, exports: Object.keys\\(p.exports||{}\\)}, null, 2\\)\\)\" 2>/dev/null)",
+      "WebSearch",
+      "Bash(npm show:*)",
+      "Bash(node -e \"const v=require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\); const arr=JSON.parse\\(v\\); console.log\\(arr.filter\\(x=>x.startsWith\\('4'\\)\\).slice\\(-5\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(npm install:*)",
+      "Bash(node -e \"const m = require\\('./node_modules/@huggingface/transformers/dist/transformers.js'\\); console.log\\('Gemma4ForConditionalGeneration' in m, require\\('./node_modules/@huggingface/transformers/package.json'\\).version\\)\")"
+    ]
+  }
+}
