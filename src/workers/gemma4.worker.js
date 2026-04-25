@@ -114,6 +114,8 @@ self.addEventListener('message', async ({ data }) => {
         promptText = data.question?.trim() || 'What is in this image?'
       } else if (mode === 'ocr') {
         promptText = 'Extract and output all text visible in this image. Output only the raw text content, preserving layout where possible.'
+      } else if (mode === 'tags') {
+        promptText = 'List every unique object, item, and subject visible in this image as a comma-separated list of short lowercase labels (e.g. "cat, wooden table, coffee mug"). Output only the comma-separated tags with no extra commentary.'
       } else {
         promptText = 'Describe this image in rich detail, including objects, colors, actions, setting, and mood.'
       }

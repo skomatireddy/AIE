@@ -8,6 +8,7 @@ import { useInference } from '../../../hooks/useInference'
 const MODES = [
   { id: 'caption',      icon: '💬', label: 'Caption',      desc: 'Detailed image description' },
   { id: 'vqa',          icon: '❓', label: 'VQA',          desc: 'Ask questions about an image' },
+  { id: 'tags',         icon: '🏷️', label: 'Tags',         desc: 'Generate labels for items in image' },
   { id: 'ocr',          icon: '📄', label: 'OCR',          desc: 'Extract text from images' },
   { id: 'asr',          icon: '🎙️', label: 'Transcribe',   desc: 'Speech to text via audio' },
   { id: 'audiovision',  icon: '🎬', label: 'AudioVision',  desc: 'Understand image + audio together' },
@@ -71,7 +72,7 @@ export default function Gemma4Panel() {
       <div className="flex flex-col gap-4">
 
         {/* Mode tabs */}
-        <div className="grid grid-cols-5 gap-1 rounded-lg border border-zinc-700 p-1">
+        <div className="grid grid-cols-6 gap-1 rounded-lg border border-zinc-700 p-1">
           {MODES.map(m => (
             <button
               key={m.id}
@@ -140,7 +141,20 @@ export default function Gemma4Panel() {
             <p className="text-xs text-zinc-500 font-medium uppercase tracking-wider">
               {activeMode.icon} {activeMode.label} Output
             </p>
-            <p className="text-zinc-100 text-sm leading-relaxed whitespace-pre-wrap">{outputText}</p>
+            {mode === 'tags' ? (
+              <div className="flex flex-wrap gap-2">
+                {outputText.split(',').map(tag => tag.trim()).filter(Boolean).map((tag, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-100"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="text-zinc-100 text-sm leading-relaxed whitespace-pre-wrap">{outputText}</p>
+            )}
           </div>
         )}
 
